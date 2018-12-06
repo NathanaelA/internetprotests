@@ -1,8 +1,8 @@
 ---
 name: I am Blocked
 about: I keep getting your site
-title: ''
-labels: ''
+title: 'Blocked: '
+labels: 'Blocked IP'
 assignees: ''
 
 ---
