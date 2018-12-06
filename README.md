@@ -16,6 +16,7 @@ We love PR's please submit them to update ip, emails or event just making the si
 - More IP addresses
 - NGINX instructions
 - Email instructions
+- Logo / Favicon
 
 ## Updates
 v0.1 - 06/12/2018 - Site is Live, since they passed the bill
