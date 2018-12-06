@@ -1,0 +1,12 @@
+@gov.au
+@dfat.gov.au
+@qld.gov.au
+@tmr.qld.gov.au
+@wa.gov.au
+@finance.wa.gov.au
+@nt.gov.au
+@sa.gov.au
+@tas.gov.au
+@act.gov.au
+@humanservices.gov.au
+@industry.gov.au
