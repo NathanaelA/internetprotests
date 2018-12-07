@@ -9,5 +9,3 @@
 203.6.160.0 - 203.6.191.255     # Commonwealth Department of Foreign Affairs and Trade
 203.13.0.0 - 203.13.15.255      # Department of Human Services (ACT)
 203.15.168.0 - 203.15.171.255   # Department of Transport and Main Roads (QLD)
-
-

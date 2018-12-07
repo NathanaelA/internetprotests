@@ -4,8 +4,7 @@ const fs = require('fs');
 let dataIn = fs.readFileSync("ips.txt").toString();
 let data = dataIn.trim().split(/\r\n|\r|\n/);
 
-let handle = fs.openSync("apache_ips.conf",'w+' );
-writeLine("RewriteEngine on", handle);
+let handle = fs.openSync("nginx_ips.txt",'w+' );
 for (let i=0;i<data.length;i++) {
     let offset = data[i].indexOf("#");
     if (offset === 0) { continue; }  // Single line comment
@@ -13,15 +12,14 @@ for (let i=0;i<data.length;i++) {
         data[i] = data[i].substr(0, offset).trim();
     }
     offset = data[i].indexOf("-");
-    var hasMore = i<data.length-1;
     if (offset < 1) {
-        writeLine('RewriteCond expr "-R '+"'"+ data[i] + (hasMore ? "/32'\" [OR]" : "/32'\""), handle);
+        writeLine(data[i], handle);
     }  else {
         let x = data[i].split("-");
-        writeGroup(x[0], x[1], handle, hasMore);
+        writeGroup(x[0], x[1], handle);
     }
 }
-writeLine("RewriteRule   ^  http://internetprotests.com/gov.html [L,R]",handle);
+
 fs.closeSync(handle);
 console.log("Done");
 
@@ -29,8 +27,8 @@ function writeLine(data, handle) {
     fs.writeSync(handle, data+"\r\n");
 }
 
-function writeGroup(start, end, handle, more) {
-    writeLine('RewriteCond expr "-R '+"'"+ipcidr(start,end) + (more ? "'\" [OR]" : "'\""), handle);
+function writeGroup(start, end, handle) {
+    writeLine(ipcidr(start,end), handle);
 }
 
 function ip2long(ip) {
@@ -64,6 +62,6 @@ function ipcidr(start, end) {
         }
 
     }
-    var diffNum = ip2long(end)-ip2long(start);
+   var diffNum = ip2long(end)-ip2long(start);
     return start.trim()+cidrArray[diffNum];
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internet Protests - Nginx Instructions</title>
+    <link href="../styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="status"><a href="/">Internet Protests</a></div>
+
+<h2>NginX Instructions</h2>
+
+This requires your NGINX webserver has the <a href="https://nginx.org/en/docs/http/ngx_http_geo_module.html">geo</a> module enabled.
+
+<pre class="code">
+geo $bad_user {
+    default 0;
+    include <b>/etc/nginx/banned-ips.conf;</b>
+}
+
+
+    # In your server block at the TOP right after it starts "server {"
+    if ($bad_user) { rewrite ^  http://internetprotests.com/gov.html; }
+</pre>
+
+Please make sure you copy the nginx ip's list to the <b>/etc/nginx/banned-ips.conf</b> file.  If your nginx directory is located elsewhere use the proper path on your server.
+You typically put this in your main config file for nginx so it will effect all sites on your server.
+
+    <div class="status bottom"><a href="/">Home</a> | <a href="/install.html">Install</a> | <a href="/aabill.html">About Bill/Press</a></div>
+
+</body>
+</html>
